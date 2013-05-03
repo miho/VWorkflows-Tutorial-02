@@ -72,6 +72,7 @@ public class Main extends Application {
 
     /**
      * Creates a flow with specified width and depth.
+     *
      * @param workflow parent workflow
      * @param depth flow depth (number of nested nodes)
      * @param width flow width (number of nodes per layer)
@@ -121,13 +122,13 @@ public class Main extends Application {
 
             // gap between nodes
             int gap = 30;
-            
+
             int numNodesPerRow = 5;
-            
+
             // specify node position (we use grid layout)
-            n.setX((i % numNodesPerRow) * (n.getWidth() + gap));
-            n.setY((i / numNodesPerRow) * (n.getHeight() + gap));
+            n.setX(gap+(i % numNodesPerRow) * (n.getWidth() + gap));
+            n.setY(gap+(i / numNodesPerRow) * (n.getHeight() + gap));
+            
         }
     }
-
 }

@@ -47,8 +47,7 @@ public class Main extends Application {
         // make it visible
         flow.setVisible(true);
 
-        // create two nodes:
-        // one leaf node and one subflow which is returned by createNodes
+        // create flow with depth 3 and width 10
         createFlow(flow, 3, 10);
 
         // create skin factory for flow visualization

@@ -1,4 +1,4 @@
-apply from: 'http://dl.bintray.com/content/shemnon/javafx-gradle/javafx.plugin'
+apply plugin: 'java'
 
 repositories {
     mavenCentral()
@@ -8,27 +8,20 @@ repositories {
 }
 
 task wrapper(type: Wrapper) {
-    gradleVersion = '1.5'
+    gradleVersion = '1.11'
 }
 
-String javaVersion = System.getProperty("java.version")
-
-int jdk = 7;
-
-if (javaVersion.startsWith("1.7")) {
-    jdk=7;
-} else if (javaVersion.startsWith("1.8")) {
-    jdk=8;
-} else {
-    System.err.println("Unsupported JDK: " + javaVersion);
+if (!hasProperty('mainClass')) {
+    ext.mainClass = "eu.mihosoft.vrl.workflow.tutorial02.Main"
+    mainClassName = mainClass;
 }
 
-println(">> using jdk " + javaVersion) 
+manifest.mainAttributes("Main-Class" : ext.mainClass)
 
 dependencies {
     compile "com.thoughtworks.xstream:xstream:1.4.4"
-    compile fileTree (dir: './lib/jfxtras/jdk'+jdk, includes: ['*.jar'])
-    compile fileTree (dir: './lib/vworkflows/jdk'+jdk, includes: ['*.jar'])
+
+    compile group: 'eu.mihosoft.vrl.workflow-8.0', name: 'vworkflows-fx', version: '0.1-r2-SNAPSHOT', changing: true
 }
 
 sourceSets {
@@ -48,14 +41,5 @@ sourceSets {
         }
     }
 }
-
-javafx {
-    mainClass "eu.mihosoft.vrl.workflow.tutorial02.Main"
-}
-
-jfxDeploy {
-    packaging = "image"
-}
-
 
 

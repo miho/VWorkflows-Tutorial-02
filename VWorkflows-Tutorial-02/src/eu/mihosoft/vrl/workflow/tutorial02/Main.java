@@ -54,7 +54,7 @@ public class Main extends Application {
         FXSkinFactory fXSkinFactory = new FXSkinFactory(canvas.getContentPane());
 
         // generate the ui for the flow
-        flow.setSkinFactory(fXSkinFactory);
+        flow.setSkinFactories(fXSkinFactory);
 
         // show the main stage/window
         showStage(canvas, primaryStage);
@@ -105,14 +105,14 @@ public class Main extends Application {
             // colors for "control", "data" and "event" are currently hardcoded
             // in skin. This will change!
             if (i % 3 == 0) {
-                n.setInput(true, "control");
-                n.setOutput(true, "control");
+                n.addInput("control");
+                n.addOutput("control");
             } else if (i % 3 == 1) {
-                n.setInput(true, "data");
-                n.setOutput(true, "data");
+                n.addInput("data");
+                n.addOutput("data");
             } else if (i % 3 == 2) {
-                n.setInput(true, "event");
-                n.setOutput(true, "event");
+                n.addInput("event");
+                n.addOutput("event");
             }
 
             // specify node size
